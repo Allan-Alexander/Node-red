@@ -1,0 +1,903 @@
+[
+    {
+        "id": "7cd8938d.09efbc",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ce75a3fb.d7558",
+        "type": "feedparse",
+        "z": "7cd8938d.09efbc",
+        "name": "Economic Times",
+        "url": "https://economictimes.indiatimes.com/markets/stocks/rssfeeds/2146842.cms",
+        "interval": "10",
+        "x": 80,
+        "y": 60,
+        "wires": [
+            [
+                "d508e52c.033bf8"
+            ]
+        ]
+    },
+    {
+        "id": "d508e52c.033bf8",
+        "type": "switch",
+        "z": "7cd8938d.09efbc",
+        "name": "Key",
+        "property": "article.description",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "Low",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "Nifty",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "L&T",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "else"
+            },
+            {
+                "t": "regex",
+                "v": "High",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "week",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "a",
+                "vt": "str",
+                "case": false
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 270,
+        "y": 60,
+        "wires": [
+            [
+                "1229bdd9.ced412"
+            ],
+            [
+                "1229bdd9.ced412"
+            ],
+            [
+                "1229bdd9.ced412"
+            ],
+            [],
+            [
+                "1229bdd9.ced412"
+            ],
+            [
+                "1229bdd9.ced412"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1229bdd9.ced412",
+        "type": "change",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.title",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.link",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 60,
+        "wires": [
+            [
+                "61728443.75e6cc"
+            ]
+        ]
+    },
+    {
+        "id": "61728443.75e6cc",
+        "type": "template",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Economic Times : {{article.title}}\n{{}}\n",
+        "output": "str",
+        "x": 600,
+        "y": 60,
+        "wires": [
+            [
+                "4f466304.1de57c"
+            ]
+        ]
+    },
+    {
+        "id": "d90a9719.0e4128",
+        "type": "debug",
+        "z": "7cd8938d.09efbc",
+        "name": "output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "4f466304.1de57c",
+        "type": "sysmessage",
+        "z": "7cd8938d.09efbc",
+        "command": "winnotification",
+        "title": "Notification",
+        "subtitle": "",
+        "op1": "",
+        "op1type": "pay",
+        "receiver": "",
+        "name": "",
+        "x": 760,
+        "y": 60,
+        "wires": [
+            [
+                "d90a9719.0e4128"
+            ]
+        ]
+    },
+    {
+        "id": "9edb2060.aea9a",
+        "type": "feedparse",
+        "z": "7cd8938d.09efbc",
+        "name": "Money Control - eco",
+        "url": "http://www.moneycontrol.com/rss/economy.xml",
+        "interval": "10",
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "b7c2d8f8.dbe878"
+            ]
+        ]
+    },
+    {
+        "id": "b7c2d8f8.dbe878",
+        "type": "switch",
+        "z": "7cd8938d.09efbc",
+        "name": "Key",
+        "property": "article.description",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "Low",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "Nifty",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "L&T",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "else"
+            },
+            {
+                "t": "regex",
+                "v": "High",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "week",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "a",
+                "vt": "str",
+                "case": true
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 270,
+        "y": 200,
+        "wires": [
+            [
+                "fdfdf686.95c548"
+            ],
+            [
+                "fdfdf686.95c548"
+            ],
+            [
+                "fdfdf686.95c548"
+            ],
+            [],
+            [
+                "fdfdf686.95c548"
+            ],
+            [
+                "fdfdf686.95c548"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "fdfdf686.95c548",
+        "type": "change",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.title",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.link",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 260,
+        "wires": [
+            [
+                "540a163d.1630a8"
+            ]
+        ]
+    },
+    {
+        "id": "540a163d.1630a8",
+        "type": "template",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Money Control - eco : {{article.title}}\n{{}}\n",
+        "output": "str",
+        "x": 600,
+        "y": 260,
+        "wires": [
+            [
+                "f325dd40.55d56"
+            ]
+        ]
+    },
+    {
+        "id": "70b9f5e.f14a70c",
+        "type": "debug",
+        "z": "7cd8938d.09efbc",
+        "name": "output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f325dd40.55d56",
+        "type": "sysmessage",
+        "z": "7cd8938d.09efbc",
+        "command": "winnotification",
+        "title": "Notification",
+        "subtitle": "",
+        "op1": "",
+        "op1type": "pay",
+        "receiver": "",
+        "name": "",
+        "x": 760,
+        "y": 260,
+        "wires": [
+            [
+                "70b9f5e.f14a70c"
+            ]
+        ]
+    },
+    {
+        "id": "b0599cc3.f669f",
+        "type": "feedparse",
+        "z": "7cd8938d.09efbc",
+        "name": "Money Control - Market",
+        "url": "http://www.moneycontrol.com/rss/marketreports.xml",
+        "interval": "10",
+        "x": 100,
+        "y": 360,
+        "wires": [
+            [
+                "dfb15e25.62d01"
+            ]
+        ]
+    },
+    {
+        "id": "dfb15e25.62d01",
+        "type": "switch",
+        "z": "7cd8938d.09efbc",
+        "name": "Key",
+        "property": "article.description",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "Low",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "Nifty",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "L&T",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "else"
+            },
+            {
+                "t": "regex",
+                "v": "High",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "week",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "a",
+                "vt": "str",
+                "case": true
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 270,
+        "y": 360,
+        "wires": [
+            [
+                "c39bf4a1.d9cd78"
+            ],
+            [
+                "c39bf4a1.d9cd78"
+            ],
+            [
+                "c39bf4a1.d9cd78"
+            ],
+            [],
+            [
+                "c39bf4a1.d9cd78"
+            ],
+            [
+                "c39bf4a1.d9cd78"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c39bf4a1.d9cd78",
+        "type": "change",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.title",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.description",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "2835c669.168fca"
+            ]
+        ]
+    },
+    {
+        "id": "2835c669.168fca",
+        "type": "template",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Money Control - market : {{article.title}}\n{{}}\n",
+        "output": "str",
+        "x": 600,
+        "y": 360,
+        "wires": [
+            [
+                "1904cf3b.f14a91"
+            ]
+        ]
+    },
+    {
+        "id": "acb46c8e.87a2c",
+        "type": "debug",
+        "z": "7cd8938d.09efbc",
+        "name": "output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1904cf3b.f14a91",
+        "type": "sysmessage",
+        "z": "7cd8938d.09efbc",
+        "command": "winnotification",
+        "title": "Notification",
+        "subtitle": "",
+        "op1": "",
+        "op1type": "pay",
+        "receiver": "",
+        "name": "",
+        "x": 760,
+        "y": 360,
+        "wires": [
+            [
+                "acb46c8e.87a2c"
+            ]
+        ]
+    },
+    {
+        "id": "f925273d.db3448",
+        "type": "feedparse",
+        "z": "7cd8938d.09efbc",
+        "name": "Money Control - Tech",
+        "url": "http://www.moneycontrol.com/rss/technology.xml",
+        "interval": "10",
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "6f3275e1.4c6a5c"
+            ]
+        ]
+    },
+    {
+        "id": "6f3275e1.4c6a5c",
+        "type": "switch",
+        "z": "7cd8938d.09efbc",
+        "name": "Key",
+        "property": "article.description",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "else"
+            },
+            {
+                "t": "regex",
+                "v": "Latest",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "Advanced",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "software",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "new",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "best",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "launch",
+                "vt": "str",
+                "case": true
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 7,
+        "x": 270,
+        "y": 480,
+        "wires": [
+            [],
+            [
+                "3d28b151.1027ce"
+            ],
+            [
+                "3d28b151.1027ce"
+            ],
+            [
+                "3d28b151.1027ce"
+            ],
+            [
+                "3d28b151.1027ce"
+            ],
+            [
+                "3d28b151.1027ce"
+            ],
+            [
+                "3d28b151.1027ce"
+            ]
+        ]
+    },
+    {
+        "id": "3d28b151.1027ce",
+        "type": "change",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.description",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 440,
+        "wires": [
+            [
+                "d3e2b104.1cd6b"
+            ]
+        ]
+    },
+    {
+        "id": "d3e2b104.1cd6b",
+        "type": "template",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Money Control - Tech : {{article.title}}\n{{}}\n",
+        "output": "str",
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "3010bb55.8b9394"
+            ]
+        ]
+    },
+    {
+        "id": "49af954f.8214fc",
+        "type": "debug",
+        "z": "7cd8938d.09efbc",
+        "name": "output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3010bb55.8b9394",
+        "type": "sysmessage",
+        "z": "7cd8938d.09efbc",
+        "command": "winnotification",
+        "title": "Notification",
+        "subtitle": "",
+        "op1": "",
+        "op1type": "pay",
+        "receiver": "",
+        "name": "",
+        "x": 760,
+        "y": 440,
+        "wires": [
+            [
+                "49af954f.8214fc"
+            ]
+        ]
+    },
+    {
+        "id": "c5b30b0f.06a878",
+        "type": "feedparse",
+        "z": "7cd8938d.09efbc",
+        "name": "MIT-research",
+        "url": "http://news.mit.edu/rss/research",
+        "interval": "10",
+        "x": 70,
+        "y": 620,
+        "wires": [
+            [
+                "51d752fd.36af3c"
+            ]
+        ]
+    },
+    {
+        "id": "51d752fd.36af3c",
+        "type": "switch",
+        "z": "7cd8938d.09efbc",
+        "name": "Key",
+        "property": "article.description",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "else"
+            },
+            {
+                "t": "regex",
+                "v": "Latest",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "Advanced",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "software",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "new",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "useful",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "a",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "rapid",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "regex",
+                "v": "quantum",
+                "vt": "str",
+                "case": true
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 9,
+        "x": 270,
+        "y": 620,
+        "wires": [
+            [],
+            [
+                "eb50fb5d.008188"
+            ],
+            [
+                "eb50fb5d.008188"
+            ],
+            [
+                "eb50fb5d.008188"
+            ],
+            [
+                "eb50fb5d.008188"
+            ],
+            [
+                "eb50fb5d.008188"
+            ],
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "eb50fb5d.008188",
+        "type": "change",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.title",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "article.description",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 540,
+        "wires": [
+            [
+                "4f21b7eb.fd64a8"
+            ]
+        ]
+    },
+    {
+        "id": "4f21b7eb.fd64a8",
+        "type": "template",
+        "z": "7cd8938d.09efbc",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Money Control - mit : {{article.title}}\n{{}}\n",
+        "output": "str",
+        "x": 600,
+        "y": 540,
+        "wires": [
+            [
+                "46ba9473.d4b7ac"
+            ]
+        ]
+    },
+    {
+        "id": "3016a529.9f60ba",
+        "type": "debug",
+        "z": "7cd8938d.09efbc",
+        "name": "output",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "46ba9473.d4b7ac",
+        "type": "sysmessage",
+        "z": "7cd8938d.09efbc",
+        "command": "winnotification",
+        "title": "Notification",
+        "subtitle": "",
+        "op1": "",
+        "op1type": "pay",
+        "receiver": "",
+        "name": "",
+        "x": 760,
+        "y": 540,
+        "wires": [
+            [
+                "3016a529.9f60ba"
+            ]
+        ]
+    }
+]
